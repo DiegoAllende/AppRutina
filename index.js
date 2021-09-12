@@ -41,7 +41,7 @@ FORMU.onsubmit = (e) => {
   timeEjercicioCopy = Math.round(((TimeBloque/ejercicios) - timeDescanso));
 
   mostrarOcultar('none', '');
-  sonar(SONIDOFONDO, 'assets/media/sonidoM1.mp3', true);
+  sonar(SONIDOFONDO, 'assets/media/sonidoM2.mp3', true);
   inicioI();
 }
 

@@ -45,13 +45,13 @@ body{
 
 .formu input[type=number]{
   border-radius: 12px;
-  padding: 12px;
+  padding: 8px;
   font-size: 1.1rem;
 }
 
 .formu input[type=submit]{
   border-radius: 5px;
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
   font-size: 1.2rem;
   font-weight: bold;
