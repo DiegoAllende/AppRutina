@@ -108,7 +108,7 @@ function sonar(AUDIO, ruta, reload){
   if(reload){
     AUDIO.play();
     AUDIO.loop = true;
-    AUDIO.volume = 0.4;
+    AUDIO.volume = 0.8;
   }else{
     AUDIO.play();
     AUDIO.volume = 1;
