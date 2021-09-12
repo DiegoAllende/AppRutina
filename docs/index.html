@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Rutina</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <main class="content">
+    <h1>RUTINA</h1>
+    <section class="content-formulario" id="content-formulario">
+      <form id="formu" class="formu">
+        <div>
+          <label for="">Tiempo</label>
+          <input type="number" value="20" name="tiempo" required placeholder="Ingresar los minutos">
+        </div>
+        <div>
+          <label for="">Bolques</label>
+          <input type="number" value="4" name="bloque" required placeholder="Cantidad de repeticiones">
+        </div>
+        <div>
+          <label for="">Ejercicios por bloque</label>
+          <input type="number" value="8" name="ejercicio" required placeholder="Cantidad de repeticiones">
+        </div>
+        <div>
+          <label for="">Descanso por ejercicio</label>
+          <input type="number" value="15" name="descanso" required placeholder="Ingresar los segundos">
+        </div>
+        <div>
+          <input type="submit" value="EMPEZAR">
+        </div>
+      </form>
+    </section>
+    <section class="content-tiempo" id="content-tiempo">
+      <p>Bloque: <span id="bloque"></span></p>
+      <p>Ejercicio: <span id="bloque-ejer"></span></p>
+      <div id="content-time" class="content-time">
+        <span id="tiempo" class="tiempo"></span>
+      </div>
+    </section>
+  </main>
+  <script src="index.js"></script>
+</body>
+</html>
