@@ -1,12 +1,15 @@
-let tiempoTotal;
 let bloques;
-let TimeBloque;
+let numBloque = 1;
+
 let ejercicios;
 let ejerciciosCopy;
-let timeDescanso;
-let timeDescansoCopy;
+let numEjercicio = 1;
+
 let timeEjercicio;
 let timeEjercicioCopy;
+
+let timeDescanso;
+let timeDescansoCopy;
 
 let auxIntervalInicio = null;
 let auxIntervalDescanso = null;
@@ -27,27 +30,25 @@ const FORMU = document.getElementById("formu");
 FORMU.onsubmit = (e) => {
   e.preventDefault();
 
-  tiempoTotal = FORMU.tiempo.value * 60;
   bloques = FORMU.bloque.value;
-  TimeBloque = tiempoTotal/bloques;
 
   ejercicios = FORMU.ejercicio.value;
   ejerciciosCopy = ejercicios;
 
+  timeEjercicio = FORMU.tiempo.value;
+  timeEjercicioCopy = timeEjercicio;
+
   timeDescanso = FORMU.descanso.value;
   timeDescansoCopy = timeDescanso;
 
-  timeEjercicio = Math.round(((TimeBloque/ejercicios) - timeDescanso));
-  timeEjercicioCopy = Math.round(((TimeBloque/ejercicios) - timeDescanso));
-
   mostrarOcultar('none', '');
-  sonar(SONIDOFONDO, 'assets/media/sonidoM2.mp3', true);
+  sonar(SONIDOFONDO, 'assets/media/sonidoM3.mp3', true);
   inicioI();
 }
 
 function inicio(){
-  BLOQUE.textContent = bloques;
-  BLOQUEEJER.textContent = ejerciciosCopy;
+  BLOQUE.textContent = numBloque;
+  BLOQUEEJER.textContent = numEjercicio;
   CONTENTTIME.style.backgroundColor = 'rgb(30, 120, 204)';
   TIEMPO.innerHTML = timeEjercicioCopy;
   --timeEjercicioCopy;
@@ -66,21 +67,30 @@ function descanso(){
     clearInterval(auxIntervalDescanso);
     timeDescansoCopy = timeDescanso;
     if(--ejerciciosCopy !== 0){
+      numEjercicio++;
       inicioI();
     }
 
     if(ejerciciosCopy === 0){
+      numBloque++;
       if(--bloques !== 0){
+        numEjercicio = 1;
         ejerciciosCopy = ejercicios;
         inicioI();
       }
 
       if(bloques === 0){
+        numBloque = 1;
+        numEjercicio = 1;
         BLOQUE.textContent = 'Completado';
         BLOQUEEJER.textContent = 'Completado';
+        TIEMPO.textContent = 'OK';
         sonarOf(SONIDOFONDO)
         setTimeout(() => {
           mostrarOcultar('', 'none');
+          BLOQUE.textContent = '';
+          BLOQUEEJER.textContent = '';
+          TIEMPO.textContent = '';
         }, 3000);
       }
     }
