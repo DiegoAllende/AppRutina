@@ -18,7 +18,7 @@ const CONTENTTIEMPO = document.getElementById("content-tiempo");
 const CONTENTFORMULARIO = document.getElementById("content-formulario");
 mostrarOcultar('', 'none');
 
-const SONIDO1 = document.createElement('audio'); 
+const SONIDO1 = document.createElement('audio');
 const SONIDOFONDO = document.createElement('audio');
 
 const TIEMPO = document.getElementById("tiempo");
@@ -46,85 +46,97 @@ FORMU.onsubmit = (e) => {
   inicioI();
 }
 
-function inicio(){
+function inicio() {
   BLOQUE.textContent = numBloque;
   BLOQUEEJER.textContent = numEjercicio;
   CONTENTTIME.style.backgroundColor = 'rgb(30, 120, 204)';
   TIEMPO.innerHTML = timeEjercicioCopy;
   --timeEjercicioCopy;
-  if(timeEjercicioCopy === 0){
+  if (timeEjercicioCopy === 0) {
     clearInterval(auxIntervalInicio);
     timeEjercicioCopy = timeEjercicio;
     descansoI();
   }
 }
 
-function descanso(){
+function descanso() {
   CONTENTTIME.style.backgroundColor = 'rgb(218, 206, 47)';
   TIEMPO.innerHTML = timeDescansoCopy;
   --timeDescansoCopy;
-  if(timeDescansoCopy === 0){
+  if (timeDescansoCopy === 0) {
     clearInterval(auxIntervalDescanso);
     timeDescansoCopy = timeDescanso;
-    if(--ejerciciosCopy !== 0){
+    if (--ejerciciosCopy !== 0) {
       numEjercicio++;
       inicioI();
     }
 
-    if(ejerciciosCopy === 0){
+    if (ejerciciosCopy === 0) {
       numBloque++;
-      if(--bloques !== 0){
+      if (--bloques !== 0) {
         numEjercicio = 1;
         ejerciciosCopy = ejercicios;
         inicioI();
       }
 
-      if(bloques === 0){
+      if (bloques === 0) {
         numBloque = 1;
         numEjercicio = 1;
-        BLOQUE.textContent = 'Completado';
-        BLOQUEEJER.textContent = 'Completado';
-        TIEMPO.textContent = 'OK';
         sonarOf(SONIDOFONDO)
+        resetContentTime('Completado', 'Completado', 'Ok');
         setTimeout(() => {
           mostrarOcultar('', 'none');
-          BLOQUE.textContent = '';
-          BLOQUEEJER.textContent = '';
-          TIEMPO.textContent = '';
-        }, 3000);
+          resetContentTime('', '', '');
+        }, 2000);
       }
     }
   }
 }
 
-function inicioI(){
+function inicioI() {
   sonar(SONIDO1, 'assets/media/sonido2.mp3', false);
   auxIntervalInicio = setInterval(() => inicio(), 1000);
 }
 
-function descansoI(){
+function descansoI() {
   sonar(SONIDO1, 'assets/media/sonido3.mp3', false);
 
   auxIntervalDescanso = setInterval(() => descanso(), 1000);
 }
 
-function mostrarOcultar(formu, tiempo){
+function mostrarOcultar(formu, tiempo) {
   CONTENTFORMULARIO.style.display = formu;
   CONTENTTIEMPO.style.display = tiempo;
 }
 
-function sonar(AUDIO, ruta, reload){
+function sonar(AUDIO, ruta, reload) {
   AUDIO.src = ruta;
-  if(reload){
+  if (reload) {
     AUDIO.play();
     AUDIO.loop = true;
     AUDIO.volume = 0.8;
-  }else{
+  } else {
     AUDIO.play();
     AUDIO.volume = 1;
   }
 }
 
-function sonarOf(AUDIO){
+function sonarOf(AUDIO) {
   AUDIO.pause();
+}
+
+function resetContentTime(textbloque, textEjercicio, textTiempo) {
+  BLOQUE.textContent = textbloque;
+  BLOQUEEJER.textContent = textEjercicio;
+  TIEMPO.textContent = textTiempo;
+}
+
+function back() {
+  clearInterval(auxIntervalInicio);
+  clearInterval(auxIntervalDescanso);
+  sonarOf(SONIDOFONDO)
+  mostrarOcultar('', 'none');
+  resetContentTime('', '', '');
+  numBloque = 1;
+  numEjercicio = 1;
 }

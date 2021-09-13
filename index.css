@@ -57,17 +57,32 @@ body{
   font-weight: bold;
   cursor: pointer;
   color: white;
-  background-color: rgb(15, 160, 160);
+  background-color: rgb(11, 114, 114);
 }
 
 .formu input[type=submit]:hover{
-  background-color: teal;
+  background-color: rgb(12, 82, 82);
 }
 
 .formu label{
   padding: 5px 0px;
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.btn{
+  border-radius: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(11, 114, 114);
+}
+
+.btn:hover{
+  background-color: rgb(12, 82, 82);
 }
 
 @media (max-width: 600px) {
