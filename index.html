@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>Mi Rutina</title>
   <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
   <main class="content">
     <h1>RUTINA</h1>
@@ -14,19 +16,19 @@
       <form id="formu" class="formu">
         <div>
           <label for="">Bloques</label>
-          <input type="number" value="4" name="bloque" required placeholder="Cantidad de repeticiones">
+          <input type="number" value="2" name="bloque" required min="1" placeholder="Cantidad de repeticiones">
         </div>
         <div>
           <label for="">Ejercicios por bloque</label>
-          <input type="number" value="8" name="ejercicio" required placeholder="Cantidad de repeticiones">
+          <input type="number" value="4" name="ejercicio" required min="1" placeholder="Cantidad de repeticiones">
         </div>
         <div>
           <label for="">Tiempo por ejercicio (seg)</label>
-          <input type="number" value="30" name="tiempo" required placeholder="Ingresar los segundos">
+          <input type="number" value="30" name="tiempo" required min="1" placeholder="Ingresar los segundos">
         </div>
         <div>
           <label for="">Descanso por ejercicio (seg)</label>
-          <input type="number" value="15" name="descanso" required placeholder="Ingresar los segundos">
+          <input type="number" value="15" name="descanso" required min="1" placeholder="Ingresar los segundos">
         </div>
         <div>
           <input type="submit" value="EMPEZAR">
@@ -44,4 +46,5 @@
   </main>
   <script src="index.js"></script>
 </body>
+
 </html>

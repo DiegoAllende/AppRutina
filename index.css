@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  font-family: 'Lucida Sans', Arial, sans-serif;
 }
 
 .content{
@@ -66,7 +67,7 @@ body{
 
 .formu label{
   padding: 5px 0px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 

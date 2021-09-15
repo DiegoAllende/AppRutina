@@ -1,4 +1,5 @@
 let bloques;
+let bloquesCopy;
 let numBloque = 1;
 
 let ejercicios;
@@ -21,6 +22,8 @@ mostrarOcultar('', 'none');
 const SONIDO1 = document.createElement('audio');
 const SONIDOFONDO = document.createElement('audio');
 
+const VIDEO1 = document.createElement('video');
+
 const TIEMPO = document.getElementById("tiempo");
 const CONTENTTIME = document.getElementById("content-time");
 const BLOQUE = document.getElementById("bloque");
@@ -31,7 +34,7 @@ FORMU.onsubmit = (e) => {
   e.preventDefault();
 
   bloques = FORMU.bloque.value;
-
+  bloquesCopy = bloques;
   ejercicios = FORMU.ejercicio.value;
   ejerciciosCopy = ejercicios;
 
@@ -42,13 +45,14 @@ FORMU.onsubmit = (e) => {
   timeDescansoCopy = timeDescanso;
 
   mostrarOcultar('none', '');
-  sonar(SONIDOFONDO, 'assets/media/sonidoM3.mp3', true);
+  sonar(VIDEO1, 'assets/media/video2.mp4', true);
+
   inicioI();
 }
 
 function inicio() {
-  BLOQUE.textContent = numBloque;
-  BLOQUEEJER.textContent = numEjercicio;
+  BLOQUE.textContent = numBloque + '  de ' + bloques;
+  BLOQUEEJER.textContent = numEjercicio + '  de ' + ejercicios;
   CONTENTTIME.style.backgroundColor = 'rgb(30, 120, 204)';
   TIEMPO.innerHTML = timeEjercicioCopy;
   --timeEjercicioCopy;
@@ -73,16 +77,16 @@ function descanso() {
 
     if (ejerciciosCopy === 0) {
       numBloque++;
-      if (--bloques !== 0) {
+      if (--bloquesCopy !== 0) {
         numEjercicio = 1;
         ejerciciosCopy = ejercicios;
         inicioI();
       }
 
-      if (bloques === 0) {
+      if (bloquesCopy === 0) {
         numBloque = 1;
         numEjercicio = 1;
-        sonarOf(SONIDOFONDO)
+        sonarOf(VIDEO1)
         resetContentTime('Completado', 'Completado', 'Ok');
         setTimeout(() => {
           mostrarOcultar('', 'none');
@@ -109,20 +113,20 @@ function mostrarOcultar(formu, tiempo) {
   CONTENTTIEMPO.style.display = tiempo;
 }
 
-function sonar(AUDIO, ruta, reload) {
-  AUDIO.src = ruta;
+function sonar(MEDIA, ruta, reload) {
+  MEDIA.src = ruta;
   if (reload) {
-    AUDIO.play();
-    AUDIO.loop = true;
-    AUDIO.volume = 0.8;
+    MEDIA.play();
+    MEDIA.loop = true;
+    MEDIA.volume = 0.8;
   } else {
-    AUDIO.play();
-    AUDIO.volume = 1;
+    MEDIA.play();
+    MEDIA.volume = 1;
   }
 }
 
-function sonarOf(AUDIO) {
-  AUDIO.pause();
+function sonarOf(MEDIA) {
+  MEDIA.pause();
 }
 
 function resetContentTime(textbloque, textEjercicio, textTiempo) {
@@ -134,7 +138,7 @@ function resetContentTime(textbloque, textEjercicio, textTiempo) {
 function back() {
   clearInterval(auxIntervalInicio);
   clearInterval(auxIntervalDescanso);
-  sonarOf(SONIDOFONDO)
+  sonarOf(VIDEO1)
   mostrarOcultar('', 'none');
   resetContentTime('', '', '');
   numBloque = 1;
